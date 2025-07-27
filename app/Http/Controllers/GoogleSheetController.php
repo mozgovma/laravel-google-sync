@@ -34,7 +34,24 @@ class GoogleSheetController extends Controller
             return "Ошибка при выполнении команды.";
         }
 
-        return nl2br($output);
+        return redirect()->route('home');
+    }
+
+    public function synchronization()
+    {
+
+        $projectRoot = base_path();
+        $command = 'php ' . $projectRoot . '/artisan sync:google-sheet';  
+
+        $output = shell_exec($command);
+
+
+        if (empty($output)) {
+            Log::error('Команда не вернула вывод или произошла ошибка');
+            return "Ошибка при выполнении команды.";
+        }
+
+        return redirect()->route('home');
     }
 
     public function saveOrEdit(Request $request)

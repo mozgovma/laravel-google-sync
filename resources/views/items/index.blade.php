@@ -32,6 +32,8 @@
             @csrf
             <button type="submit" class="btn btn-primary">📄</button>
           </form>
+          <a href="{{ route('fetch') }}" class="btn btn-primary">📥</a>
+          <a href="{{ route('synchronization') }}" class="btn btn-primary">🔄</a>
           <a href="{{ route('items.clear') }}" class="btn btn-danger">🗑️</a>
         </div>
       </div>
@@ -44,6 +46,7 @@
           <th>Name</th>
           <th>Status</th>
           <th>Discriptions</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -57,6 +60,19 @@
               </span>
             </td>
             <td>{{ $item->discription ?: '-' }}</td>
+            <td>
+                <form action="{{ route('items.toggle-status', $item->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-primary" title="Изменить статус">🔄</button>
+                </form>
+
+                <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" title="Удалить">🗑️</button>
+                </form>
+            </td>
           </tr>
         @endforeach
       </tbody>

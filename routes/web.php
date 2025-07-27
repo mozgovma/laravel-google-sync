@@ -12,4 +12,10 @@ Route::get('/items/clear', [ItemController::class, 'clear'])->name('items.clear'
 
 Route::post('/save-or-edit', [GoogleSheetController::class, 'saveOrEdit'])->name('save-or-edit');
 
-Route::get('/fetch/{count?}', [GoogleSheetController::class, 'fetch']);
+Route::get('/fetch/{count?}', [GoogleSheetController::class, 'fetch'])->name('fetch');
+
+Route::get('/synchronization', [GoogleSheetController::class, 'synchronization'])->name('synchronization');
+
+Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+
+Route::patch('/items/{item}/toggle-status', [ItemController::class, 'toggleStatus'])->name('items.toggle-status');

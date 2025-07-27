@@ -22,49 +22,19 @@ class ItemController extends Controller
         return view('items.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->back()->with('success', 'Запись удалена.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function toggleStatus(Item $item)
     {
-        //
-    }
+        $item->status = $item->status === 'Allowed' ? 'Prohibited' : 'Allowed';
+        $item->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Item $item)
-    {
-        //
+        return redirect()->back()->with('success', 'Статус обновлён.');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function clear(Item $item)
     {
         $this->itemService->clearTable();
