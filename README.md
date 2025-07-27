@@ -59,3 +59,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Project-Specific Commands
+
+This project provides custom Artisan commands to work with Google Sheets and synchronize data with the database.
+
+### Import Data from Google Sheet
+```bash
+php artisan sheet:fetch {count?}
+```
+### Import Data from Google Sheet
+```bash
+php artisan sync:google-sheet
+```
+
