@@ -32,8 +32,8 @@
             @csrf
             <button type="submit" class="btn btn-primary">📄</button>
           </form>
-          <a href="{{ route('fetch') }}" class="btn btn-primary">📥</a>
-          <a href="{{ route('synchronization') }}" class="btn btn-primary">🔄</a>
+          <a href="{{ route('fetch') }}" class="btn btn-primary" title="выгрузить из google">📥</a>
+          <a href="{{ route('synchronization') }}" class="btn btn-primary" title="синхронизация">🔄</a>
           <a href="{{ route('items.clear') }}" class="btn btn-danger">🗑️</a>
         </div>
       </div>
